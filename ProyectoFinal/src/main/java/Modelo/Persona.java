@@ -1,4 +1,4 @@
-package co.edu.uniquindio.proyectofinal;
+package Modelo;
 
 public class Persona {
     protected String id;
@@ -12,7 +12,10 @@ public class Persona {
         this.nombre = nombre;
         this.telefono = telefono;
     }
-public abstract void mostrarInfo();
+
+    public void mostrarInfo() {
+
+    }
 
     public String getId() {
         return id;

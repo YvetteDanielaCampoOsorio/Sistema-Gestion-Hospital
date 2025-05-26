@@ -1,9 +1,9 @@
-package co.edu.uniquindio.proyectofinal;
+package Modelo;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Paciente extends Persona implements IGestionCitas{
+public class Paciente extends Persona implements IGestionCitas {
     private List<String> historialMedico;
     private List<Cita> citas;
     private List<Notificacion> notificaciones;

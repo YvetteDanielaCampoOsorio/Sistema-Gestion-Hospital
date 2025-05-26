@@ -1,4 +1,4 @@
-package co.edu.uniquindio.proyectofinal;
+package Modelo;
 
 import java.time.LocalTime;
 

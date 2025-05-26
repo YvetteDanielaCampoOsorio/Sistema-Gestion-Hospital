@@ -1,0 +1,53 @@
+package Modelo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class SistemaHospital {
+    private List<Paciente> pacientes;
+    private List<Medico> medicos;
+    private Agenda agenda;
+
+    public SistemaHospital(List<Paciente> pacientes, List<Medico> medicos, List<Cita> citas) {
+        this.pacientes = new ArrayList<>();
+        this.medicos = new ArrayList<>();
+        this.agenda = new Agenda();
+    }
+    // regitrar un nuevo paciente
+    public void resgistrarPaciente(Paciente paciente) {
+        pacientes.add(paciente);
+    }
+    //registrar un nuevo medico
+    public void resgistrarMedico(Medico medico) {
+        medicos.add(medico);
+    }
+    //dar manejo de citas a la agenda
+    public void agendarCita(Cita cita) {
+        agenda.agendarCita(cita);
+        cita.getPaciente().agendarCitas(cita);
+        cita.getMedico().agendarCitas(cita);
+    }
+    public List<Paciente> getPacientes() {
+        return pacientes;
+    }
+
+    public void setPacientes(List<Paciente> pacientes) {
+        this.pacientes = pacientes;
+    }
+
+    public List<Medico> getMedicos() {
+        return medicos;
+    }
+
+    public void setMedicos(List<Medico> medicos) {
+        this.medicos = medicos;
+    }
+
+    public Agenda getAgenda() {
+        return agenda;
+    }
+
+    public void setAgenda(Agenda agenda) {
+        this.agenda = agenda;
+    }
+}

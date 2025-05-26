@@ -1,4 +1,4 @@
-package co.edu.uniquindio.proyectofinal;
+package Modelo;
 
 public enum EstadoCita {
     AGENDADA,
