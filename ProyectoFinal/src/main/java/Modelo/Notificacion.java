@@ -1,10 +1,8 @@
 package Modelo;
 
-import java.time.LocalTime;
-
-public record Notificacion(String mensaje, LocalTime fechaHora) {
+public record Notificacion(String mensaje, String fecha) {
     @Override
     public String toString() {
-        return "Su cita fue programada"+ fechaHora + " - " + mensaje;
+        return String.format("Notificación [%s]: %s", fecha, mensaje);
     }
 }

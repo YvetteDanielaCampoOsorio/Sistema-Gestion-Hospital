@@ -1,6 +1,5 @@
 package Modelo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Administrador extends Persona implements IGestorUsuarios {
@@ -8,11 +7,12 @@ public class Administrador extends Persona implements IGestorUsuarios {
     private List<Paciente> pacientes;
     private List<Medico> medicos;
 
-    public Administrador(String id, String correo, String nombre, String telefono) {
-        super(id, correo, nombre, telefono);
-        this.pacientes = new ArrayList<>();
-        this.medicos = new ArrayList<>();
+    public Administrador(String id, String telefono, Double fechaNacimiento, String nombre, String correo, List<Medico> medicos, List<Paciente> pacientes) {
+        super(id, telefono, fechaNacimiento, nombre, correo);
+        this.medicos = medicos;
+        this.pacientes = pacientes;
     }
+
 
     private boolean existePaciente(String id) {
         return pacientes.stream().anyMatch(p -> p.getId().equals(id));
@@ -85,6 +85,11 @@ public class Administrador extends Persona implements IGestorUsuarios {
 
     public List<Medico> getMedicos() {
         return medicos;
+    }
+
+    @Override
+    public String mostrarInformacionBasica() {
+        return "";
     }
 }
 

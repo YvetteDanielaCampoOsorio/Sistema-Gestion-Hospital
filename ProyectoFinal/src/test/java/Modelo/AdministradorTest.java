@@ -3,27 +3,18 @@ package Modelo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class AdministradorTest {
+
     private Administrador admin;
     private Paciente paciente1, paciente2;
     private Medico medico1, medico2;
 
-    @BeforeEach
-    public void setup() {
-        admin = new Administrador("1", "admin@hospital.com", "Admin", "3112345678");
 
-        paciente1 = new Paciente("101", "juan@correo.com", "Juan", "3001112233", new ArrayList<>());
-        paciente2 = new Paciente("102", "julia@correo.com", "julia", "3254785748", new ArrayList<>());
-
-        medico1 = new Medico("101", "maria@correo.com", "Dra. María", "3119876543",
-                EspecialidadMedica.PEDIATRIA, new ArrayList<>());
-        medico2 = new Medico("102", "grey@correo.com", "Dra. Grey", "3258745548",
-                EspecialidadMedica.PEDIATRIA, new ArrayList<>());
-    }
 
     @Test
     public void testRegistrarPaciente_Exitoso() {
@@ -39,7 +30,7 @@ class AdministradorTest {
     @Test
     public void testModificarPaciente_Exitoso() {
         admin.registrarPaciente(paciente1);
-        Paciente modificado = new Paciente("001", "nuevo@mail.com", "Ana María","3115485878", new ArrayList<>());
+        Paciente modificado = new Paciente("101", "Ana María", LocalDate.of(2001, 4, 4), "nuevo@mail.com", "3115485878", new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
         assertTrue(admin.modificarPaciente(modificado));
     }
 
@@ -51,7 +42,7 @@ class AdministradorTest {
     @Test
     public void testEliminarPaciente_Exitoso() {
         admin.registrarPaciente(paciente2);
-        assertTrue(admin.eliminarPaciente("002"));
+        assertTrue(admin.eliminarPaciente("102"));
     }
 
     @Test
@@ -73,8 +64,7 @@ class AdministradorTest {
     @Test
     public void testModificarMedico_Exitoso() {
         admin.registrarMedico(medico2);
-        Medico modificado = new Medico("102", "nuevo@mail.com", "Dra. Grey Modificada", "3119876543",
-                EspecialidadMedica.PEDIATRIA, new ArrayList<>());
+        Medico modificado = new Medico("202", "12345678", LocalDate.of(1975, 3, 15), "Joe", "hsnñas{sñ", EspecialidadMedica.PEDIATRIA, new ArrayList<>());
         assertTrue(admin.modificarMedico(modificado));
     }
 
@@ -86,12 +76,11 @@ class AdministradorTest {
     @Test
     public void testEliminarMedico_Exitoso() {
         admin.registrarMedico(medico1);
-        assertTrue(admin.eliminarMedico("101"));
+        assertTrue(admin.eliminarMedico("201"));
     }
 
     @Test
     public void testEliminarMedico_NoExiste() {
         assertFalse(admin.eliminarMedico("999"));
     }
-
 }

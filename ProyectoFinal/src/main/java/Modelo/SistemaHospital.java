@@ -4,44 +4,52 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SistemaHospital {
+
     private List<Paciente> pacientes;
     private List<Medico> medicos;
+    private List<Sala> salas;
     private Agenda agenda;
 
     public SistemaHospital(List<Paciente> pacientes, Agenda agenda, List<Medico> medicos) {
         this.pacientes = pacientes;
         this.agenda = agenda;
         this.medicos = medicos;
+        this.salas = new ArrayList<>();
     }
 
     public SistemaHospital() {
         this.pacientes = new ArrayList<>();
         this.medicos = new ArrayList<>();
+        this.salas = new ArrayList<>();
         this.agenda = new Agenda();
     }
 
-
-
-    // regitrar un nuevo paciente
-    public void registrarPaciente() {
-        pacientes.add(paciente);
-    }
-    //registrar un nuevo medico
-    public void resgistrarMedico(Medico medico) {
-        medicos.add(medico);
-    }
-    //registrar sala
-    public void registrarSala(Sala sala) {
-        if (sala != null && !sala.contains(sala)) {
-            sala.add(sala);
+    public void registrarPaciente(Paciente paciente) {
+        if (paciente != null && !pacientes.contains(paciente)) {
+            pacientes.add(paciente);
         }
     }
-    //dar manejo de citas a la agenda
-    public void agendarCita(Cita cita) {
-        agenda.agendarCita(cita);
-        cita.getPaciente().agendarCitas(cita);
-        cita.getMedico().agendarCitas(cita);
+
+    public void registrarMedico(Medico medico) {
+        if (medico != null && !medicos.contains(medico)) {
+            medicos.add(medico);
+        }
     }
+
+    public void registrarSala(Sala sala) {
+        if (sala != null && !salas.contains(sala)) {
+            salas.add(sala);
+        }
+    }
+
+    public void agendarCita(Cita cita) {
+        if (cita != null) {
+            agenda.agendarCita(cita);
+            cita.getPaciente().agendarCitas(cita);
+            cita.getMedico().agendarCitas(cita);
+        }
+    }
+
     public List<Paciente> getPacientes() {
         return pacientes;
     }
@@ -58,14 +66,15 @@ public class SistemaHospital {
         this.medicos = medicos;
     }
 
+    public List<Sala> getSalas() {
+        return salas;
+    }
+
     public Agenda getAgenda() {
         return agenda;
     }
 
     public void setAgenda(Agenda agenda) {
         this.agenda = agenda;
-    }
-
-    public void registrarPaciente(Paciente paciente) {
     }
 }

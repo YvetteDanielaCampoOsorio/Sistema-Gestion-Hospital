@@ -3,57 +3,22 @@ package Modelo;
 import java.time.LocalTime;
 
 public class Cita {
-    private LocalTime fechaHora;
-    private Medico medico;
-    private Paciente paciente;
+    private LocalTime hora;
     private String motivo;
-    private EstadoCita estadoCita;
+    private EstadoCita estado;
 
-    public Cita(LocalTime fechaHora, String motivo, Paciente paciente, Medico medico,EstadoCita estadoCita) {
-        this.fechaHora = fechaHora;
+    public Cita(String motivo) {
         this.motivo = motivo;
-        this.paciente = paciente;
-        this.medico = medico;
-        this.estadoCita = estadoCita;
+        this.estado = EstadoCita.PROGRAMADA;
+        this.hora = LocalTime.now();
     }
 
-    public EstadoCita getEstadoCita() {
-        return estadoCita;
+    public void cambiarEstado(EstadoCita nuevoEstado) {
+        this.estado = nuevoEstado;
     }
 
-    public void setEstadoCita(EstadoCita estadoCita) {
-        this.estadoCita = estadoCita;
-    }
-
-    public LocalTime getFechaHora() {
-        return fechaHora;
-    }
-
-    public void setFechaHora(LocalTime fechaHora) {
-        this.fechaHora = fechaHora;
-    }
-
-    public String getMotivo() {
-        return motivo;
-    }
-
-    public void setMotivo(String motivo) {
-        this.motivo = motivo;
-    }
-
-    public Paciente getPaciente() {
-        return paciente;
-    }
-
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
-    }
-
-    public Medico getMedico() {
-        return medico;
-    }
-
-    public void setMedico(Medico medico) {
-        this.medico = medico;
-    }
+    // Getters
+    public LocalTime getHora() { return hora; }
+    public String getMotivo() { return motivo; }
+    public EstadoCita getEstado() { return estado; }
 }
