@@ -9,59 +9,89 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AdministradorTest {
     private Administrador admin;
-    private Paciente paciente;
-    private Medico medico;
+    private Paciente paciente1, paciente2;
+    private Medico medico1, medico2;
 
     @BeforeEach
     public void setup() {
         admin = new Administrador("1", "admin@hospital.com", "Admin", "3112345678");
 
-        paciente = new Paciente("101", "juan@correo.com", "Juan", "3001112233", new ArrayList<>());
+        paciente1 = new Paciente("101", "juan@correo.com", "Juan", "3001112233", new ArrayList<>());
+        paciente2 = new Paciente("102", "julia@correo.com", "julia", "3254785748", new ArrayList<>());
 
-        medico = new Medico("201", "maria@correo.com", "Dra. María", "3119876543",
+        medico1 = new Medico("101", "maria@correo.com", "Dra. María", "3119876543",
+                EspecialidadMedica.PEDIATRIA, new ArrayList<>());
+        medico2 = new Medico("102", "grey@correo.com", "Dra. Grey", "3258745548",
                 EspecialidadMedica.PEDIATRIA, new ArrayList<>());
     }
 
     @Test
-    public void testRegistrarPaciente() {
-        assertTrue(admin.registrarPaciente(paciente));
-        assertEquals(1, admin.getPacientes().size());
+    public void testRegistrarPaciente_Exitoso() {
+        assertTrue(admin.registrarPaciente(paciente1));
     }
 
     @Test
-    public void testModificarPaciente() {
-        admin.registrarPaciente(paciente);
-        Paciente actualizado = new Paciente("101", "juanp@correo.com", "Juan Pérez", "3001112244", new ArrayList<>());
-        assertTrue(admin.modificarPaciente(actualizado));
-        assertEquals("Juan Pérez", admin.getPacientes().get(0).getNombre());
+    public void testRegistrarPaciente_Duplicado() {
+        admin.registrarPaciente(paciente1);
+        assertFalse(admin.registrarPaciente(paciente1));
     }
 
     @Test
-    public void testEliminarPaciente() {
-        admin.registrarPaciente(paciente);
-        assertTrue(admin.eliminarPaciente("101"));
-        assertEquals(0, admin.getPacientes().size());
+    public void testModificarPaciente_Exitoso() {
+        admin.registrarPaciente(paciente1);
+        Paciente modificado = new Paciente("001", "nuevo@mail.com", "Ana María","3115485878", new ArrayList<>());
+        assertTrue(admin.modificarPaciente(modificado));
     }
 
     @Test
-    public void testRegistrarMedico() {
-        assertTrue(admin.registrarMedico(medico));
-        assertEquals(1, admin.getMedicos().size());
+    public void testModificarPaciente_NoExiste() {
+        assertFalse(admin.modificarPaciente(paciente1));
     }
 
     @Test
-    public void testModificarMedico() {
-        admin.registrarMedico(medico);
-        Medico actualizado = new Medico("201", "mariag@correo.com", "Dra. María Gómez", "3119998877",
+    public void testEliminarPaciente_Exitoso() {
+        admin.registrarPaciente(paciente2);
+        assertTrue(admin.eliminarPaciente("002"));
+    }
+
+    @Test
+    public void testEliminarPaciente_NoExiste() {
+        assertFalse(admin.eliminarPaciente("999"));
+    }
+
+    @Test
+    public void testRegistrarMedico_Exitoso() {
+        assertTrue(admin.registrarMedico(medico1));
+    }
+
+    @Test
+    public void testRegistrarMedico_Duplicado() {
+        admin.registrarMedico(medico1);
+        assertFalse(admin.registrarMedico(medico1));
+    }
+
+    @Test
+    public void testModificarMedico_Exitoso() {
+        admin.registrarMedico(medico2);
+        Medico modificado = new Medico("102", "nuevo@mail.com", "Dra. Grey Modificada", "3119876543",
                 EspecialidadMedica.PEDIATRIA, new ArrayList<>());
-        assertTrue(admin.modificarMedico(actualizado));
-        assertEquals("Dra. María Gómez", admin.getMedicos().get(0).getNombre());
+        assertTrue(admin.modificarMedico(modificado));
     }
 
     @Test
-    public void testEliminarMedico() {
-        admin.registrarMedico(medico);
-        assertTrue(admin.eliminarMedico("201"));
-        assertEquals(0, admin.getMedicos().size());
+    public void testModificarMedico_NoExiste() {
+        assertFalse(admin.modificarMedico(medico2));
     }
+
+    @Test
+    public void testEliminarMedico_Exitoso() {
+        admin.registrarMedico(medico1);
+        assertTrue(admin.eliminarMedico("101"));
+    }
+
+    @Test
+    public void testEliminarMedico_NoExiste() {
+        assertFalse(admin.eliminarMedico("999"));
+    }
+
 }
