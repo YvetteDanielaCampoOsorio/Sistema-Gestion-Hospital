@@ -52,6 +52,9 @@ public class Sala {
     public boolean contains(Sala sala) {
         return false;
     }
+
+    public void add(Sala sala) {
+    }
 }
 
 

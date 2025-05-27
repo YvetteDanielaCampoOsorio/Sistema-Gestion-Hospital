@@ -1,5 +1,6 @@
 package Modelo;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,11 +9,19 @@ public class Paciente extends Persona implements IGestionCitas {
     private List<Cita> citas;
     private List<Notificacion> notificaciones;
 
-    public Paciente(String id, String correo, String nombre, String telefono, List<Cita> citas) {
+    public Paciente(String id, String correo, String nombre, String telefono, List<String> historialMedico, List<Cita> citas, List<Notificacion> notificaciones) {
         super(id, correo, nombre, telefono);
         this.historialMedico = new ArrayList<>();
         this.citas = new ArrayList<>();
         this.notificaciones = new ArrayList<>();
+    }
+
+    public List<Notificacion> getNotificaciones() {
+        return notificaciones;
+    }
+
+    public void setNotificaciones(List<Notificacion> notificaciones) {
+        this.notificaciones = notificaciones;
     }
 
     public List<String> getHistorialMedico() {

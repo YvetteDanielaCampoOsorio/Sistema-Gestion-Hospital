@@ -8,13 +8,22 @@ public class SistemaHospital {
     private List<Medico> medicos;
     private Agenda agenda;
 
-    public SistemaHospital(List<Paciente> pacientes, List<Medico> medicos, List<Cita> citas) {
+    public SistemaHospital(List<Paciente> pacientes, Agenda agenda, List<Medico> medicos) {
+        this.pacientes = pacientes;
+        this.agenda = agenda;
+        this.medicos = medicos;
+    }
+
+    public SistemaHospital() {
         this.pacientes = new ArrayList<>();
         this.medicos = new ArrayList<>();
         this.agenda = new Agenda();
     }
+
+
+
     // regitrar un nuevo paciente
-    public void resgistrarPaciente(Paciente paciente) {
+    public void registrarPaciente() {
         pacientes.add(paciente);
     }
     //registrar un nuevo medico
@@ -55,5 +64,8 @@ public class SistemaHospital {
 
     public void setAgenda(Agenda agenda) {
         this.agenda = agenda;
+    }
+
+    public void registrarPaciente(Paciente paciente) {
     }
 }
