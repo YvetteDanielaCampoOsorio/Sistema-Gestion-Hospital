@@ -21,6 +21,9 @@ public class SistemaHospital {
     public void resgistrarMedico(Medico medico) {
         medicos.add(medico);
     }
+    //registrar sala
+    public void registrarSala(Sala sala) {
+    }
     //dar manejo de citas a la agenda
     public void agendarCita(Cita cita) {
         agenda.agendarCita(cita);
