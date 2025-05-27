@@ -1,8 +1,8 @@
 package Modelo;
 
 public enum EstadoCita {
-    AGENDADA,
+    PROGRAMADA,
     CANCELADA,
     COMPLETADA,
-    NO_ASISTIO
+    EN_PROCESO,
 }

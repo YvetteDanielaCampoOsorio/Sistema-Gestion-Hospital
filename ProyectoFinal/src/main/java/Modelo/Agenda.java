@@ -11,7 +11,7 @@ public class Agenda {
         citas.add(cita);
     }
     //cancelar cita
-    public  void cacelarCita (Cita cita){
+    public  void cancelarCita (Cita cita){
         citas.remove(cita);
     }
 
