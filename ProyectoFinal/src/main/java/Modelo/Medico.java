@@ -2,7 +2,7 @@ package Modelo;
 
 import java.util.List;
 
-public abstract class Medico extends Persona implements IGestionCitas {
+public class Medico extends Persona implements IGestionCitas {
     private EspecialidadMedica especialidad;
     private List<Cita> citas;
 
