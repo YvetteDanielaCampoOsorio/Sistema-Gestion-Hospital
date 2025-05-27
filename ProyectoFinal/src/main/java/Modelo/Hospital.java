@@ -29,6 +29,28 @@ public class Hospital {
         }
         return false;
     }
+    //Agregar Sala
+    public boolean agregarSala(Sala sala) {
+        if (sala == null) return false;
+        for (Sala sala1 : salas) {
+            if (sala.getId().equals(sala.getId())) {
+                return false;
+            }
+        }
+        return salas.add(sala);
+    }
+    //eliminar sala
+
+    public boolean eliminarSala(String idSala) {
+        for (Sala sala : salas) {
+            if (sala.getId().equals(idSala)) {
+                salas.remove(sala);
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public String getNit() {
         return nit;
@@ -51,8 +73,5 @@ public class Hospital {
     public List<Sala> getSalas() {
         return salas;
     }
-    //Agregar Sala
-    public void agregarSala(Sala sala) {
-        salas.add(sala);
-    }
+
 }

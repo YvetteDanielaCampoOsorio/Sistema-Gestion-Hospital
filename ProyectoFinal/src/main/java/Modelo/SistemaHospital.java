@@ -23,6 +23,9 @@ public class SistemaHospital {
     }
     //registrar sala
     public void registrarSala(Sala sala) {
+        if (sala != null && !sala.contains(sala)) {
+            sala.add(sala);
+        }
     }
     //dar manejo de citas a la agenda
     public void agendarCita(Cita cita) {
