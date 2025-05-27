@@ -1,61 +1,30 @@
 package Modelo;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Medico extends Persona implements IGestionCitas {
     private EspecialidadMedica especialidad;
     private final List<Cita> citas;
 
-    // Constructor principal
-    public Medico(String id, String telefono, LocalDate fechaNacimiento, String nombre,
-                  String correo, EspecialidadMedica especialidad) {
-        super(id, telefono, fechaNacimiento.toString(), nombre, correo);
-        this.especialidad = Objects.requireNonNull(especialidad, "La especialidad no puede ser nula");
+    public Medico(String id, String telefono, String fechaNacimiento,
+                  String nombre, String correo, EspecialidadMedica especialidad) {
+        super(id, telefono, fechaNacimiento, nombre, correo);
+        this.especialidad = Objects.requireNonNull(especialidad);
         this.citas = new ArrayList<>();
     }
 
-    // Constructor alternativo simplificado
-    public Medico(String id, String nombre, EspecialidadMedica especialidad) {
-        this(id, "", LocalDate.now(), nombre, "", especialidad);
-    }
-
-    // Métodos de gestión de citas
     @Override
-    public void agendarCitas(Cita cita) {
-        Objects.requireNonNull(cita, "La cita no puede ser nula");
-        if (citas.contains(cita)) {
-            throw new IllegalStateException("La cita ya está agendada para este médico");
-        }
-        citas.add(cita);
+    public String mostrarInformacionBasica() {
+        return String.format("Dr. %s - %s (ID: %s)", getNombre(), especialidad, getId());
     }
 
-    @Override
-    public void cancelarCita(Cita cita) {
-        Objects.requireNonNull(cita, "La cita no puede ser nula");
-        if (!citas.remove(cita)) {
-            throw new IllegalArgumentException("La cita no existe en el calendario del médico");
-        }
-    }
-
-    @Override
-    public void verCita(Cita cita) {
-        Objects.requireNonNull(cita, "La cita no puede ser nula");
-        if (!citas.contains(cita)) {
-            throw new IllegalArgumentException("El médico no tiene esta cita agendada");
-        }
-        System.out.println("Cita: " + cita.getMotivo() + " - Estado: " + cita.getEstado());
-    }
-
-    // Métodos de acceso
     public EspecialidadMedica getEspecialidad() {
         return especialidad;
-    }
-
-    public void setEspecialidad(EspecialidadMedica especialidad) {
-        this.especialidad = Objects.requireNonNull(especialidad, "La especialidad no puede ser nula");
     }
 
     public List<Cita> getCitas() {
@@ -63,15 +32,32 @@ public class Medico extends Persona implements IGestionCitas {
     }
 
     @Override
-    public String mostrarInformacionBasica() {
-        return String.format("Dr. %s - %s | Tel: %s",
-                getNombre(), especialidad, getTelefono());
+    public void agendarCita(Cita cita) {
+
     }
 
-    // Método adicional útil
-    public int cantidadCitasProgramadas() {
-        return (int) citas.stream()
-                .filter(c -> c.getEstado() == EstadoCita.PROGRAMADA)
-                .count();
+    @Override
+    public void cancelarCita(String idCita) {
+
+    }
+
+    @Override
+    public Cita verCita(String idCita) {
+        return null;
+    }
+
+    @Override
+    public void reagendarCita(String idCita, LocalDate nuevaFecha, LocalTime nuevaHora) {
+
+    }
+
+    @Override
+    public List<Cita> listarCitasPorPaciente(String idPaciente) {
+        return List.of();
+    }
+
+    @Override
+    public List<Cita> listarCitasPorMedico(String idMedico) {
+        return List.of();
     }
 }

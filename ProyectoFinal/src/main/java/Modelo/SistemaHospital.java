@@ -42,13 +42,6 @@ public class SistemaHospital {
         }
     }
 
-    public void agendarCita(Cita cita) {
-        if (cita != null) {
-            agenda.agendarCita(cita);
-            cita.getPaciente().agendarCitas(cita);
-            cita.getMedico().agendarCitas(cita);
-        }
-    }
 
     public List<Paciente> getPacientes() {
         return pacientes;
