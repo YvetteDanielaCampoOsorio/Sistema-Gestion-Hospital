@@ -24,5 +24,8 @@ public class Administrador extends Persona implements IGestionCitas {
     public void mostrarInfo() {
 
     }
+
+
+
 }
 
