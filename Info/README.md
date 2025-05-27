@@ -1,6 +1,10 @@
 # Sistema de Gestión Hospitalaria - UQ  
 Proyecto final para la Universidad del Quindío.  
 
+Desabollado por:
+- Yvette Daniela Campo Osorio
+- Sofia Cabezas Mejia
+
 ✔️ Módulos:  
 - Gestión de pacientes (registro, historial médico).  
 - Programación y gestión de citas médicas.  
